@@ -10,11 +10,13 @@ public class Dimensions {
 	// Work in metres.
 
 	// Triangle 1 is the equilateral triangle with base dimensions.
-	// Triangle 2 is the isosceles triangle with base base and the base are
+	// Triangle 2 is the isosceles triangle with base base and the other two
+	// sides are
 	// length hypotenuse.
 
 	// Ratio is ratio between the two sides required to build a 2v dome.
 	// Decagon Side Length =
+
 	private final static double ratio = 0.88431;
 	private static double decagonSideLength = 0.7;
 	private static double rectangleSideLength = 0.7;
@@ -48,7 +50,31 @@ public class Dimensions {
 		return d;
 	}
 
+	public static double insideFiveLengthFlatPentagon() {
+		double d = base / (2 * Math.sin(Math.toRadians(36)));
+		return d;
+	}
+
+	public static double taperAngleOfBeamsInPentagon () {
+		double ang1 = Math.toRadians(72);
+		ThreeVector A = new ThreeVector(-base*Math.sin(ang1),base*Math.cos(ang1),0);
+		
+		double g = (base*Math.sin(Math.toRadians(74))/(2*Math.sin(Math.toRadians(36))));
+		double d = insideFiveLengthFlatPentagon();
+		double e = Math.sqrt(Math.pow(hypotenuse, 2) + Math.pow(d, 2));
+		ThreeVector B = new ThreeVector(0.5*base, g, e);
+		
+		ThreeVector C = new ThreeVector(0.5*base, (g + d), 0);
+		ThreeVector O = new ThreeVector(0,0,0);
+		
+		ThreeVector v1 = ThreeVector.(C,O);
+	}
+
 	public static void main(String[] args) {
+		System.out.println("---------------------------------------------");
+		System.out.println("----------------PROJECT DOMEY----------------");
+		System.out.println("---------------------------------------------");
+		System.out.println();
 		ArrayList<Double> aOI = anglesOfIsosceles(hypotenuse, base);
 		System.out.println();
 		diameter(decagonSideLength);
